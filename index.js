@@ -26,7 +26,7 @@ const Calculator = require('./calculator');
   const top = argv._[0] || 10;
   const { min, max, from = '2017-01-01', to = '2018-01-07', ignores } = argv;
 
-  console.log(`If you put $1,000 in each coins, you will get...`);
+  console.log(`If you put $1,000 in each coin, you will make...`);
 
   (await Calculator.init({
     top,
