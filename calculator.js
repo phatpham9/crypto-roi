@@ -32,11 +32,11 @@ const fetchCoins = async date => {
   return formatCoins(data);
 };
 
-const filterCoinsByPrice = (coins, nub, max) => coins.filter(({ price }) => {
-  if (nub && max) {
-    return nub <= price && price <= max;
-  } else if (nub) {
-    return nub <= price;
+const filterCoinsByPrice = (coins, min, max) => coins.filter(({ price }) => {
+  if (min && max) {
+    return min <= price && price <= max;
+  } else if (min) {
+    return min <= price;
   } else if (max) {
     return price <= max;
   }
@@ -46,8 +46,8 @@ const filterCoinsByPrice = (coins, nub, max) => coins.filter(({ price }) => {
 
 const filterCoinsByCoins = (coins, ignores) => coins.filter(({ symbol }) => ignores.indexOf(symbol) === -1);
 
-const getTopHoldings = (coinsOnStartDate, coinsOnEndDate, nub, max, ignores, top) => {
-  const topHoldings = filterCoinsByCoins(filterCoinsByPrice(coinsOnStartDate, nub, max), ignores).slice(0, top);
+const getTopHoldings = (coinsOnStartDate, coinsOnEndDate, min, max, ignores, top) => {
+  const topHoldings = filterCoinsByCoins(filterCoinsByPrice(coinsOnStartDate, min, max), ignores).slice(0, top);
 
   return topHoldings.map(({ index, symbol, name, price, marketCap }) => {
     const coin = coinsOnEndDate.find((coinOnEndDate) => coinOnEndDate.symbol === symbol);
@@ -85,11 +85,11 @@ class Calculator {
     return cal;
   }
 
-  constructor({ from, to, nub = 0, max = 0, ignores = [], top = 10, investmentOfEach = 1000 }) {
+  constructor({ from, to, min = 0, max = 0, ignores = [], top = 10, investmentOfEach = 1000 }) {
     this.options = {
       from,
       to,
-      nub,
+      min,
       max,
       ignores,
       top,
@@ -98,12 +98,12 @@ class Calculator {
   }
 
   async _calculate() {
-    const { from, to, nub, max, ignores, top, investmentOfEach } = this.options;
+    const { from, to, min, max, ignores, top, investmentOfEach } = this.options;
 
     const coinsOnStartDate = await fetchCoins(from);
     const coinsOnEndDate = await fetchCoins(to);
     
-    const topHoldings = getTopHoldings(coinsOnStartDate, coinsOnEndDate, nub, max, ignores, top);
+    const topHoldings = getTopHoldings(coinsOnStartDate, coinsOnEndDate, min, max, ignores, top);
 
     const { totalInvestment, totalReturn, returnRate } = calculateROI(topHoldings, investmentOfEach);
 

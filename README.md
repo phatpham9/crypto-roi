@@ -20,7 +20,7 @@ yarn start
 
 - from: string (get from https://coinmarketcap.com/historical)
 - to: string
-- nub: number
+- min: number
 - max: number
 - ignores: array of string
 - top: number
