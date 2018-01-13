@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-const Calculator = require('./Calculator');
+const Calculator = require('./calculator');
 
 (async () => {
   const argv = require('yargs')
   .usage('Usage: $0 <command> [options]')
-  .example('$0 10 --max 10 -f 2017-01-01 -t 2018-01-07 -i USDT,DOGE')
+  .example('$0 10 -f 2017-01-01 -t 2018-01-07 --min 1 --max 10 -i USDT,DOGE')
   .alias('f', 'from')
   .string('f')
   .describe('f', 'From (get from https://coinmarketcap.com/historical)')
@@ -23,10 +23,13 @@ const Calculator = require('./Calculator');
   .epilog('Phat Pham | Copyright 2018')
   .argv;
 
-  const { min, max, from, to, ignores } = argv;
+  const top = argv._[0] || 10;
+  const { min, max, from = '2017-01-01', to = '2018-01-07', ignores } = argv;
+
+  console.log(`If you put $1,000 in each coins, you will get...`);
 
   (await Calculator.init({
-    top: argv._[0] || 10,
+    top,
     from,
     to,
     max,
