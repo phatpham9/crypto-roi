@@ -18,10 +18,10 @@ yarn start
 
 ### Options
 
-- startDate: string (get from https://coinmarketcap.com/historical)
-- endDate: string
-- minPrice: number
-- maxPrice: number
+- from: string (get from https://coinmarketcap.com/historical)
+- to: string
+- nub: number
+- max: number
 - ignores: array of string
 - top: number
 
@@ -29,9 +29,9 @@ yarn start
 
 I want to calculate the ROI of `top 10 coins` on CoinMarketCap that have `max price is 1$`, `exclude USDT & DOGE` `from 2017-01-01 to 2018-01-07`:
 
-- startDate: 2017-01-01
-- endDate: 2018-01-08
-- maxPrice: 1
+- from: 2017-01-01
+- to: 2018-01-08
+- max: 1
 - ignores: [ "USDT", "DOGE" ]
 - top: 10
 

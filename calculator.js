@@ -32,13 +32,13 @@ const fetchCoins = async date => {
   return formatCoins(data);
 };
 
-const filterCoinsByPrice = (coins, minPrice, maxPrice) => coins.filter(({ price }) => {
-  if (minPrice && maxPrice) {
-    return minPrice <= price && price <= maxPrice;
-  } else if (minPrice) {
-    return minPrice <= price;
-  } else if (maxPrice) {
-    return price <= maxPrice;
+const filterCoinsByPrice = (coins, nub, max) => coins.filter(({ price }) => {
+  if (nub && max) {
+    return nub <= price && price <= max;
+  } else if (nub) {
+    return nub <= price;
+  } else if (max) {
+    return price <= max;
   }
 
   return true;
@@ -46,8 +46,8 @@ const filterCoinsByPrice = (coins, minPrice, maxPrice) => coins.filter(({ price 
 
 const filterCoinsByCoins = (coins, ignores) => coins.filter(({ symbol }) => ignores.indexOf(symbol) === -1);
 
-const getTopHoldings = (coinsOnStartDate, coinsOnEndDate, minPrice, maxPrice, ignores, top) => {
-  const topHoldings = filterCoinsByCoins(filterCoinsByPrice(coinsOnStartDate, minPrice, maxPrice), ignores).slice(0, top);
+const getTopHoldings = (coinsOnStartDate, coinsOnEndDate, nub, max, ignores, top) => {
+  const topHoldings = filterCoinsByCoins(filterCoinsByPrice(coinsOnStartDate, nub, max), ignores).slice(0, top);
 
   return topHoldings.map(({ index, symbol, name, price, marketCap }) => {
     const coin = coinsOnEndDate.find((coinOnEndDate) => coinOnEndDate.symbol === symbol);
@@ -85,12 +85,12 @@ class Calculator {
     return cal;
   }
 
-  constructor({ startDate, endDate, minPrice = 0, maxPrice = 0, ignores = [], top = 10, investmentOfEach = 1000 }) {
+  constructor({ from, to, nub = 0, max = 0, ignores = [], top = 10, investmentOfEach = 1000 }) {
     this.options = {
-      startDate,
-      endDate,
-      minPrice,
-      maxPrice,
+      from,
+      to,
+      nub,
+      max,
       ignores,
       top,
       investmentOfEach,
@@ -98,12 +98,12 @@ class Calculator {
   }
 
   async _calculate() {
-    const { startDate, endDate, minPrice, maxPrice, ignores, top, investmentOfEach } = this.options;
+    const { from, to, nub, max, ignores, top, investmentOfEach } = this.options;
 
-    const coinsOnStartDate = await fetchCoins(startDate);
-    const coinsOnEndDate = await fetchCoins(endDate);
+    const coinsOnStartDate = await fetchCoins(from);
+    const coinsOnEndDate = await fetchCoins(to);
     
-    const topHoldings = getTopHoldings(coinsOnStartDate, coinsOnEndDate, minPrice, maxPrice, ignores, top);
+    const topHoldings = getTopHoldings(coinsOnStartDate, coinsOnEndDate, nub, max, ignores, top);
 
     const { totalInvestment, totalReturn, returnRate } = calculateROI(topHoldings, investmentOfEach);
 
@@ -117,10 +117,10 @@ class Calculator {
   }
 
   printCSV() {
-    const { startDate, endDate } = this.options;
+    const { from, to } = this.options;
     const { coins, investmentOfEach, totalInvestment, totalReturn, returnRate } = this.investment;
   
-    const csv = [`#,Coin,${startDate},Profit/Loss Rate,${endDate},#`];
+    const csv = [`#,Coin,${from},Profit/Loss Rate,${to},#`];
   
     coins.forEach(({ symbol, name, lastIndex, lastPrice, lastMarketCap, index, price, marketCap }) => csv.push(`${lastIndex},${symbol} - ${name},${lastPrice},${price ? Math.round(price / lastPrice) : 'N/A'},${price ? price : 'N/A'},${index ? index : 'N/A'}`));
     
@@ -130,16 +130,16 @@ class Calculator {
   }
 
   print() {
-    const { startDate, endDate } = this.options;
+    const { from, to } = this.options;
     const { coins, investmentOfEach, totalInvestment, totalReturn, returnRate } = this.investment;
   
     const table = new Table({
       head: [
         '#',
         'Coin',
-        `${startDate}`,
+        `${from}`,
         'Profit/Loss Rate',
-        `${endDate}`,
+        `${to}`,
         '#'
       ],
     });
