@@ -1,10 +1,21 @@
 {
-  "name": "cc-investment-analysis",
+  "name": "crypto-roi-calculator",
   "version": "1.0.0",
-  "description": "cryptocurrency investment strategy analysis",
+  "description": "A simple calculator of cryptocurrency investment in top coins on coinmarketcap.com",
   "main": "index.js",
   "author": "Phat Pham <phatpham9@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phatpham9/crypto-roi-calculator"
+  },
+  "bugs": {
+    "url": "https://github.com/phatpham9/crypto-roi-calculator/issues"
+  },
+  "homepage": "https://github.com/phatpham9/crypto-roi-calculator#readme",
+  "engines": {
+    "node": ">=9"
+  },
   "scripts": {
     "start": "node index.js"
   },
@@ -12,6 +23,9 @@
     "cli-table": "^0.3.1",
     "node-fetch": "^1.7.3",
     "yargs": "^10.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "bin": {
     "roi": "index.js"
