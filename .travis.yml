@@ -1,0 +1,30 @@
+language: node_js
+
+node_js:
+- 9
+
+install:
+- yarn
+
+cache:
+  yarn: true
+  directories:
+  - node_modules
+
+script:
+- "./index.js"
+
+deploy:
+  provider: npm
+  email: phatpham9@gmail.com
+  api_key: "$NPM_AUTH_TOKEN"
+  skip_cleanup: true
+  on:
+    node: '9'
+    branch: master
+    tags: true
+
+notifications:
+  email: false
+  slack:
+    secure: lFbrm+zP+Qy2kubICEqLNwTU1asCPdy0FTg+MJ4y/xOm3VtXNP2tF+VvktaOM0j+vLFarPJcsg5Ew0yXdMcVVip/RS+ckCMlyLoaTbDL4OabZZyjZEPqCAU8BVJ6hui5IHG9UYOEHW3W6QfH6uahKFaNK8wK0co75Q7rg4myx4TzWMy7P6asLrkLfP4HAEWtNu0pDJ90sVoys0JUQIMZ6GtXHHTPUF6TRfvDS2ICfeM5R/CZPHKGRGPVR4Ue033EuRQsyZ+qJ8DUn2uskXya4hVJfBglrIdPH5fqoBhQIWaRGYdUXTKvRv4UGy5QArWkt3YolD7YDBBOVP3C7I44aM6EEncZEUuxJqUE9aCyZ4jmVWW+7FMT+KbcP9ymL8NWIREH038e8l9kDe3pkMc2mHh8DX1PlZJ86hOQLlJMnk0emNpL80IZ0zdcvUCgsc9wMuCxGBDkcgkFK+eb6mVvNfwYEoHWXCOpQtkFBb3Dig4Nnx+Eqc1okLCutJO1DClXJV6asIAp4TpTmY0UPfI+B065oOTtHayFc35fOiF2zPfbJ1KvHIgtSNZzW5I6g7oRHPxu+73J6V2a7AWQsRNw8Zu6ATB3mjAFQtrtjII5kyGcvIglHt8Gpv6C0biKHg2iJalI5B9ZGtupPknMJ1kXWRnv/4m0SfYiWj4dMqZWHAU=

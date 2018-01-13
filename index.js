@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 const Calculator = require('./Calculator');
 
-const argv = require('yargs')
+(async () => {
+  const argv = require('yargs')
   .usage('Usage: $0 <command> [options]')
   .example('$0 10 --max 10 -f 2017-01-01 -t 2018-01-07 -i USDT,DOGE')
   .alias('f', 'from')
@@ -22,8 +23,8 @@ const argv = require('yargs')
   .epilog('Phat Pham | Copyright 2018')
   .argv;
 
-const { min, max, from, to, ignores } = argv;
-(async () => {
+  const { min, max, from, to, ignores } = argv;
+
   (await Calculator.init({
     top: argv._[0] || 10,
     from,
