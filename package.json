@@ -1,6 +1,6 @@
 {
   "name": "cryptocurrency-roi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A ROI calculator of top cryptocurrencies on coinmarketcap.com",
   "main": "index.js",
   "author": "Phat Pham <phatpham9@gmail.com>",
