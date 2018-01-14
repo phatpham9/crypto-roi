@@ -12,7 +12,7 @@ cache:
   - node_modules
 
 script:
-- "./index.js"
+- yarn start
 
 deploy:
   provider: npm
