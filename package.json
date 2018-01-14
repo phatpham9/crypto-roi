@@ -1,18 +1,18 @@
 {
-  "name": "crypto-roi-calculator",
+  "name": "cryptocurrency-roi",
   "version": "1.0.0",
-  "description": "A simple calculator of cryptocurrency investment in top coins on coinmarketcap.com",
+  "description": "A ROI calculator of top cryptocurrencies on coinmarketcap.com",
   "main": "index.js",
   "author": "Phat Pham <phatpham9@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phatpham9/crypto-roi-calculator"
+    "url": "git+https://github.com/phatpham9/cryptocurrency-roi"
   },
   "bugs": {
-    "url": "https://github.com/phatpham9/crypto-roi-calculator/issues"
+    "url": "https://github.com/phatpham9/cryptocurrency-roi/issues"
   },
-  "homepage": "https://github.com/phatpham9/crypto-roi-calculator#readme",
+  "homepage": "https://github.com/phatpham9/cryptocurrency-roi#readme",
   "engines": {
     "node": ">=9"
   },
