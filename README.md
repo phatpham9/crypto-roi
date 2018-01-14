@@ -5,8 +5,8 @@ A ROI calculator of top cryptocurrencies on coinmarketcap.com
 [![Travis](https://img.shields.io/travis/phatpham9/cryptocurrency-roi.svg)](https://travis-ci.org/phatpham9/cryptocurrency-roi)
 [![David](https://img.shields.io/david/phatpham9/cryptocurrency-roi.svg)](https://github.com/phatpham9/cryptocurrency-roi)
 [![David Dev](https://img.shields.io/david/dev/phatpham9/cryptocurrency-roi.svg)](https://github.com/phatpham9/cryptocurrency-roi)
-[![NPM Version](https://img.shields.io/npm/v/phatpham9/cryptocurrency-roi.svg)](https://www.npmjs.com/package/phatpham9/cryptocurrency-roi)
-[![NPM Downloads](https://img.shields.io/npm/dt/phatpham9/cryptocurrency-roi.svg)](https://www.npmjs.com/package/phatpham9/cryptocurrency-roi)
+[![NPM Version](https://img.shields.io/npm/v/cryptocurrency-roi.svg)](https://www.npmjs.com/package/cryptocurrency-roi)
+[![NPM Downloads](https://img.shields.io/npm/dt/cryptocurrency-roi.svg)](https://www.npmjs.com/package/cryptocurrency-roi)
 
 ## Getting Started
 
