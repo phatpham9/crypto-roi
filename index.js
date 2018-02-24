@@ -129,6 +129,10 @@ class Calculator {
     console.log(csv.join('\n'));
   }
 
+  printJSON() {
+    console.log(this.investment);
+  }
+
   print() {
     const { from, to } = this.options;
     const { coins, investmentOfEach, totalInvestment, totalReturn, returnRate } = this.investment;
