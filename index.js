@@ -126,11 +126,11 @@ class Calculator {
     
     csv.push(`,Total Investment,${totalInvestment},${Math.round(returnRate)},${totalReturn},`);
 
-    console.log(csv.join('\n'));
+    return csv.join('\n');
   }
 
   printJSON() {
-    console.log(this.investment);
+    return this.investment;
   }
 
   print() {
@@ -168,7 +168,7 @@ class Calculator {
       '',
     ]);
   
-    console.log(table.toString());
+    return table.toString();
   }
 }
 

@@ -29,12 +29,12 @@ const Calculator = require('../');
 
   console.log(`If you put $1,000 in each coin, you will make...`);
 
-  (await Calculator.init({
+  console.log((await Calculator.init({
     top,
     from,
     to,
     max,
     min,
     ignores: ignores ? ignores.split(',') : [],
-  })).print();
+  })).print());
 })();
