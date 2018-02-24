@@ -36,5 +36,5 @@ const Calculator = require('../');
     max,
     min,
     ignores: ignores ? ignores.split(',') : [],
-  })).print());
+  })).printTable());
 })();
