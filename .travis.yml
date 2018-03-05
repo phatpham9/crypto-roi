@@ -13,6 +13,7 @@ cache:
 
 script:
 - yarn test
+- yarn build
 
 deploy:
   provider: npm

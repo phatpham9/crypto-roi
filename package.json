@@ -1,8 +1,8 @@
 {
   "name": "crypto-roi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A ROI calculator of holding top coins on coinmarketcap.com",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Phat Pham <phatpham9@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -17,12 +17,43 @@
     "node": ">=9"
   },
   "scripts": {
+    "clean": "rimraf dist",
+    "lint": "eslint .",
+    "start": "nodemon --exec \"yarn build\"",
+    "prebuild": "yarn run clean && yarn lint",
+    "build": "babel index.js --out-dir dist --minified",
     "test": "node test"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1"
   },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-plugin-transform-regenerator": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-airbnb": "^2.4.0",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "15.0.1",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "5.0.1",
+    "eslint-plugin-react": "7.1.0",
+    "nodemon": "^1.11.0",
+    "rimraf": "^2.6.1"
+  },
   "publishConfig": {
     "access": "public"
+  },
+  "eslintConfig": {
+    "extends": "airbnb"
+  },
+  "babel": {
+    "presets": [
+      "airbnb"
+    ],
+    "plugins": [
+      "transform-runtime",
+      "transform-regenerator"
+    ]
   }
 }
