@@ -1,34 +1,33 @@
-# cryptocurrency-roi
-A ROI calculator of top cryptocurrencies on coinmarketcap.com
+# crypto-roi
+A ROI calculator of holding top coins on coinmarketcap.com
 
-[![Package Version](https://img.shields.io/github/package-json/v/phatpham9/cryptocurrency-roi.svg)]()
-[![Travis](https://img.shields.io/travis/phatpham9/cryptocurrency-roi.svg)](https://travis-ci.org/phatpham9/cryptocurrency-roi)
-[![David](https://img.shields.io/david/phatpham9/cryptocurrency-roi.svg)](https://github.com/phatpham9/cryptocurrency-roi)
-[![David Dev](https://img.shields.io/david/dev/phatpham9/cryptocurrency-roi.svg)](https://github.com/phatpham9/cryptocurrency-roi)
-[![NPM Version](https://img.shields.io/npm/v/cryptocurrency-roi.svg)](https://www.npmjs.com/package/cryptocurrency-roi)
-[![NPM Downloads](https://img.shields.io/npm/dt/cryptocurrency-roi.svg)](https://www.npmjs.com/package/cryptocurrency-roi)
+[![Package Version](https://img.shields.io/github/package-json/v/phatpham9/crypto-roi.svg)]()
+[![Travis](https://img.shields.io/travis/phatpham9/crypto-roi.svg)](https://travis-ci.org/phatpham9/crypto-roi)
+[![David](https://img.shields.io/david/phatpham9/crypto-roi.svg)](https://github.com/phatpham9/crypto-roi)
+[![David Dev](https://img.shields.io/david/dev/phatpham9/crypto-roi.svg)](https://github.com/phatpham9/crypto-roi)
+[![NPM Version](https://img.shields.io/npm/v/crypto-roi.svg)](https://www.npmjs.com/package/crypto-roi)
+[![NPM Downloads](https://img.shields.io/npm/dt/crypto-roi.svg)](https://www.npmjs.com/package/crypto-roi)
 
-## Getting Started
+## Usage
 
-### Installation
-Make sure you have NodeJS >= 9, yarn (most prefered) or npm installed. Then install the tool:
+### Install
 
-```bash
-yarn global add cryptocurrency-roi
-```
-
-### Usage
-
-I want to calculate the ROI of `top 10` on CoinMarketCap `from 2017-01-01 to 2018-01-07` that have `price is less than 1$` and `excluded USDT & DOGE`:
+Make sure you have NodeJS >= 9, yarn (most prefered) or npm installed. Then install the library to your project:
 
 ```bash
-roi 10 -f 2017-01-01 -t 2018-01-07 --max 1 -i USDT,DOGE
+yarn add crypto-roi
 ```
 
-The result will be like this:
+### Example
 
 <div style="text-align: center;">
-  <img src="./images/20170101-20180107-0-1-USDT,DOGE-10.png">
+  <img style="max-width: 750px;" src="./test/example-code.png" />
+</div>
+
+The result will look like this:
+
+<div style="text-align: center;">
+  <img style="max-width: 750px;" src="./test/example-result.png" />
 </div>
 
 ## Author & Contributors

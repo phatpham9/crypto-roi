@@ -1,5 +1,4 @@
-const fetch = require('node-fetch');
-const Table = require('cli-table');
+const fetch = require('isomorphic-fetch');
 
 const getHistorialUrl = date => {
   const formatDate = date => date.replace(/-/g, '');
@@ -77,99 +76,23 @@ const calculateROI = (coins, investmentOfEach) => {
   };
 };
 
-class Calculator {
-  static async init(options) {
-    const cal = new Calculator(options);
-    await cal._calculate();
-
-    return cal;
-  }
-
-  constructor({ from, to, min = 0, max = 0, ignores = [], top = 10, investmentOfEach = 1000 }) {
-    this.options = {
-      from,
-      to,
-      min,
-      max,
-      ignores,
-      top,
-      investmentOfEach,
-    };
-  }
-
-  async _calculate() {
-    const { from, to, min, max, ignores, top, investmentOfEach } = this.options;
-
-    const coinsOnStartDate = await fetchCoins(from);
-    const coinsOnEndDate = await fetchCoins(to);
-    
-    const topHoldings = getTopHoldings(coinsOnStartDate, coinsOnEndDate, min, max, ignores, top);
-
-    const { totalInvestment, totalReturn, returnRate } = calculateROI(topHoldings, investmentOfEach);
-
-    this.investment = {
-      coins: topHoldings,
-      investmentOfEach,
-      totalInvestment,
-      totalReturn,
-      returnRate,
-    };
-  }
-
-  printCSV() {
-    const { from, to } = this.options;
-    const { coins, investmentOfEach, totalInvestment, totalReturn, returnRate } = this.investment;
+const calculate = async ({ from = '2017-01-01', to = '2018-01-07', min = 0, max = 0, ignores = [], top = 10, investmentOfEach = 1000 }) => {
+  const coinsOnStartDate = await fetchCoins(from);
+  const coinsOnEndDate = await fetchCoins(to);
   
-    const csv = [`#,Coin,${from},Profit/Loss Rate,${to},#`];
-  
-    coins.forEach(({ symbol, name, lastIndex, lastPrice, lastMarketCap, index, price, marketCap }) => csv.push(`${lastIndex},${symbol} - ${name},${lastPrice},${price ? Math.round(price / lastPrice) : 'N/A'},${price ? price : 'N/A'},${index ? index : 'N/A'}`));
-    
-    csv.push(`,Total Investment,${totalInvestment},${Math.round(returnRate)},${totalReturn},`);
+  const topHoldings = getTopHoldings(coinsOnStartDate, coinsOnEndDate, min, max, ignores, top);
 
-    return csv.join('\n');
-  }
+  const { totalInvestment, totalReturn, returnRate } = calculateROI(topHoldings, investmentOfEach);
 
-  printTable() {
-    const { from, to } = this.options;
-    const { coins, investmentOfEach, totalInvestment, totalReturn, returnRate } = this.investment;
-  
-    const table = new Table({
-      head: [
-        '#',
-        'Coin',
-        `${from}`,
-        'Profit/Loss Rate',
-        `${to}`,
-        '#'
-      ],
-    });
-  
-    coins.forEach(({ symbol, name, lastIndex, lastPrice, lastMarketCap, index, price, marketCap }) => {
-      table.push([
-        lastIndex,
-        `${symbol} - ${name}`,
-        lastPrice,
-        price ? Math.round(price / lastPrice) : 'N/A',
-        price ? price : 'N/A',
-        index ? index : 'N/A',
-      ]);
-    });
-    
-    table.push([
-      '',
-      'Total Investment',
-      totalInvestment,
-      Math.round(returnRate),
-      totalReturn,
-      '',
-    ]);
-  
-    return table.toString();
-  }
-
-  print() {
-    return this.investment;
-  }
+  return {
+    coins: topHoldings,
+    investmentOfEach,
+    totalInvestment,
+    totalReturn,
+    returnRate,
+  };
 }
 
-module.exports = Calculator;
+module.exports = {
+  calculate,
+};

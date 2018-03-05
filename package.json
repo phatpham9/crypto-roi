@@ -1,33 +1,28 @@
 {
-  "name": "cryptocurrency-roi",
-  "version": "1.1.0",
-  "description": "A ROI calculator of top cryptocurrencies on coinmarketcap.com",
+  "name": "crypto-roi",
+  "version": "1.0.0",
+  "description": "A ROI calculator of holding top coins on coinmarketcap.com",
   "main": "index.js",
   "author": "Phat Pham <phatpham9@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phatpham9/cryptocurrency-roi"
+    "url": "git+https://github.com/phatpham9/crypto-roi"
   },
   "bugs": {
-    "url": "https://github.com/phatpham9/cryptocurrency-roi/issues"
+    "url": "https://github.com/phatpham9/crypto-roi/issues"
   },
-  "homepage": "https://github.com/phatpham9/cryptocurrency-roi#readme",
+  "homepage": "https://github.com/phatpham9/crypto-roi#readme",
   "engines": {
     "node": ">=9"
   },
   "scripts": {
-    "start": "node bin/index.js"
+    "test": "node test"
   },
   "dependencies": {
-    "cli-table": "^0.3.1",
-    "node-fetch": "^1.7.3",
-    "yargs": "^10.1.1"
+    "isomorphic-fetch": "^2.2.1"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "bin": {
-    "roi": "bin/index.js"
   }
 }
