@@ -1,6 +1,6 @@
 {
   "name": "crypto-roi",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A ROI calculator of holding top coins on coinmarketcap.com",
   "main": "dist/index.js",
   "author": "Phat Pham <phatpham9@gmail.com>",
