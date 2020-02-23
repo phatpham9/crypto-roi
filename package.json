@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "A ROI calculator of holding top coins on coinmarketcap.com",
   "main": "dist/index.js",
-  "author": "Phat Pham <phatpham9@gmail.com>",
+  "author": "Phat Pham (https://onroads.xyz)",
   "license": "MIT",
   "repository": {
     "type": "git",
